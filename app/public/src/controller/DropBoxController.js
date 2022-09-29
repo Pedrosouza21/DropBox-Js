@@ -343,5 +343,11 @@ class DropBoxController {
     })
   }
 
+  initEventsLi(li) {
+    li.addEventListener('click', e => {
+      li.classList.toggle('selected')
+    })
+  }
+
 
 }
