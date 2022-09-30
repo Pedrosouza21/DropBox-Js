@@ -71,7 +71,7 @@ class DropBoxController {
 
 
   initEvents() {
-    this.btnNewFolder.addEventListener("click", (event) => {
+    this.btnNewFolder.addEventListener("click", e=> {
       let name = prompt('Nome da nova pasta:');
 
       if (name) {
@@ -144,7 +144,6 @@ class DropBoxController {
       this.uploadTask(event.target.files)
         .then((responses) => {
           responses.forEach((resp) => {
-
             this.getFirebaseRef().push().set(resp.files['input-file'])
           });
 
@@ -168,7 +167,7 @@ class DropBoxController {
   }
 
 
-  getFirebaseRef() {
+  getFirebaseRef(path) {
 
     if (!path) path = this.currentFolder.join('/')
 
@@ -182,12 +181,11 @@ class DropBoxController {
 
 
   ajax(
-
     url,
     method = "GET",
     formData = new FormData(),
-    onprogress = function () { },
-    onloadstart = function () { }
+    onprogress = function () {},
+    onloadstart = function () {}
   ) {
     return new Promise((resolve, reject) => {
       let ajax = new XMLHttpRequest();
